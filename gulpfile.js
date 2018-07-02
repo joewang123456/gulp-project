@@ -75,3 +75,26 @@ gulp.task('serve', ['inject'], function () {
 gulp.task('default', ['clean:build'], function () {
     gulp.start('serve');
 });
+
+watch(`${srcPath}pages/**`, (event) => {
+    var filePath = event['history'];
+    console.log(`${filePath} ${event.event}`);
+    filePath.map((file) => {
+        let target = gulp.src(file);
+        let fileName = Util.getFileName(file);
+        let sources = gulp.src([
+            `${buildPath}js/libs.js`,
+            `${buildPath}js/${fileName}.js`,
+            `${buildPath}css/common.css`,
+            `${buildPath}css/${fileName}.css`
+        ], {
+            read: false
+        });
+        target.pipe(inject(sources, {
+                ignorePath: 'build'
+            }))
+            .pipe(gulp.dest(`${buildPath}pages`))
+            .pipe(connect.reload());
+    });
+
+});
