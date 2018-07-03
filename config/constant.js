@@ -1,6 +1,6 @@
 var buildPath = './build/';
 var srcPath = './src/';
-var port = 3001;
+var port = 3000;
 var host = 'http://joe.test.ximalaya.com';
 module.exports = {
     buildPath,

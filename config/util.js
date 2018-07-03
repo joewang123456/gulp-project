@@ -31,8 +31,8 @@ var Util = {
         });
         return [
             //api代理
-            proxy('/api', {
-                target: 'http://m.test.ximalaya.com',
+            proxy('/chat', {
+                target: 'http://joe.test.ximalaya.com:8081',
                 changeOrigin: true
             }),
             //页面重定向代理,次吃proxyPage不能设置为page或者pages，否则页面映射不成功
