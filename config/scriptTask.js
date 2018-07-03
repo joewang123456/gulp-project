@@ -13,14 +13,17 @@ var scriptTask = function (gulp) {
     this.libPath = [
         `${srcPath}js/lib/*.js` //这样处理的前提，是每个js之间不会有依赖关系，如果存在依赖关系，要按顺序合并
     ]
+    //将处理lib目录的js之外全部编译到build/js下
     this.jsPath = [
-        `${srcPath}js/*.js`
+        `${srcPath}js/**`, `!${srcPath}js/lib`, `!${srcPath}js/lib/**`
     ]
     this.watchPath = `${srcPath}js/**/**`;
     this.watch();
 }
 
 scriptTask.prototype.compileJs = function (path, mergeName, reCompile) {
+    //获取js后目录名称,处理多目录js的生成路径
+    var folder = /js(\/.*)\//g.exec(path[0]);
     var stream = this.gulp.src(path)
     if (mergeName) {
         stream = stream.pipe(concat('libs.js')) //合并到index.js文件中
@@ -30,7 +33,7 @@ scriptTask.prototype.compileJs = function (path, mergeName, reCompile) {
         .on('error', function (err) {
             gutil.log(gutil.colors.red('[Error]'), err.toString());
         })
-        .pipe(this.gulp.dest(`${buildPath}js`)) //输出
+        .pipe(this.gulp.dest(`${buildPath}js${(folder&&folder[1]!=='/lib')?folder[1]:''}`)) //输出
     if (reCompile) {
         stream = stream.pipe(connect.reload());
     }

@@ -1,0 +1,76 @@
+@keyframes bounce {
+    0% {
+        transform: translateY(-360px);
+    }
+    10% {
+        transform: translateY(-100px);
+    }
+    20% {
+        transform: translateY(-90px);
+    }
+    30% {
+        transform: translateY(-80px);
+    }
+    30% {
+        transform: translateY(-0px);
+    }
+    40% {
+        transform: translateY(-80px);
+    }
+    50% {
+        transform: translateY(-160px);
+    }
+    60% {
+        transform: translateY(-200px);
+    }
+    70% {
+        transform: translateY(-260px);
+    }
+    80% {
+        transform: translateY(-320px);
+    }
+    90% {
+        transform: translateY(-350px);
+    }
+    100% {
+        transform: translateY(-360px);
+    }
+}
+
+.page {
+    .box {
+        margin: 100px;
+        .rect {
+            width: 50px;
+            height: 400px;
+            border-bottom: 10px solid greenyellow;
+            background: linear-gradient(0deg, rgba(135, 206, 235, 0.2) 10px, rgba(135, 206, 235, 0.9) 100px, rgba(135, 206, 235, 0.5) 200px);
+            position: relative;
+            .ball {
+                animation: bounce 3s infinite;
+                position: absolute;
+                bottom: 0;
+                left: 5px;
+                right: 5px;
+                width: 40px;
+                height: 40px;
+                border-radius: 100px;
+                background: radial-gradient(white 5%, rgba(232, 116, 116, 0.5) 65%, rgba(232, 116, 116, 1) 100%);
+            }
+        }
+    }
+}
+
+@keyframes typing {
+    0% {
+        width: 0
+    }
+}
+
+h1 {
+    width: 15ch;
+    /* 文本的宽度 */
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 6s steps(15) infinite;
+}
