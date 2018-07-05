@@ -11,7 +11,10 @@ var srcPath = './src/';
 var scriptTask = function (gulp) {
     this.gulp = gulp;
     this.libPath = [
-        `${srcPath}js/lib/*.js` //这样处理的前提，是每个js之间不会有依赖关系，如果存在依赖关系，要按顺序合并
+        `${srcPath}js/lib/bluebird.js`, //增加es6-promise polyfill
+        `${srcPath}js/lib/fastclick.js`, //解决Iphone与ipad单击延迟300ms问题
+        `${srcPath}js/lib/limitLetter.js`, //字数限制
+        `${srcPath}js/lib/spEvent.js`, //字数限制
     ]
     //将处理lib目录的js之外全部编译到build/js下
     this.jsPath = [
