@@ -11,7 +11,7 @@ var Util = require('./util.js');
 
 module.exports = function (gulp) {
     gulp.task('images', function () {
-        return gulp.src(`${srcPath}images/**`)
+        return gulp.src([`${srcPath}images/**`, `!${srcPath}images/sprits/**`, `!${srcPath}images/sprits`])
             .pipe(gulp.dest(`${buildPath}images`))
     });
 
